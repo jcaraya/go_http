@@ -3,7 +3,6 @@ package main
 import (
 	"fmt"
 	"go_http/pkg/handler"
-	"go_http/pkg/memory"
 	"go_http/pkg/router"
 	"net/http"
 
@@ -21,9 +20,6 @@ func main() {
 
 	// Register the handlers.
 	muxRouter.RegisterHandlers(handler.RegisteredHandlers)
-
-	// Initialize memory consuming component.
-	go memory.AllocateMemory(20)
 
 	// Listen for requests.
 	http.ListenAndServe(":8090", muxRouter)
