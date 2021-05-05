@@ -1,6 +1,6 @@
 package handler
 
-import "go_websocket/pkg/router"
+import "go_http/pkg/router"
 
 var RegisteredHandlers = []router.HTTPHandler{
 	&HelloHandler{},

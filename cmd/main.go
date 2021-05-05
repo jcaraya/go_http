@@ -2,9 +2,9 @@ package main
 
 import (
 	"fmt"
-	"go_websocket/pkg/handler"
-	"go_websocket/pkg/memory"
-	"go_websocket/pkg/router"
+	"go_http/pkg/handler"
+	"go_http/pkg/memory"
+	"go_http/pkg/router"
 	"net/http"
 
 	_ "net/http/pprof"
