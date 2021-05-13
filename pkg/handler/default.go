@@ -1,7 +1,7 @@
 package handler
 
 import (
-	"fmt"
+	"encoding/json"
 	"net/http"
 )
 
@@ -17,5 +17,26 @@ func (h *DefaultHandler) Pattern() string {
 
 // ServeHTTP handels the http request.
 func (h *DefaultHandler) ServeHTTP(w http.ResponseWriter, req *http.Request) {
-	fmt.Fprintf(w, "Default Handler\n")
+
+	// Initialize an empty slice that will contain the available handlers.
+	p := []string{}
+
+	// Iterate over the available handlers.
+	for _, h := range RegisteredHandlers {
+		p = append(p, h.Pattern())
+	}
+
+	// Marshal the resulting list.
+	r, err := json.Marshal(p)
+	if err != nil {
+		// TODO: log error.
+		return
+	}
+
+	// Write the corresponding json response.
+	_, err = w.Write(r)
+	if err != nil {
+		// TODO: log error.
+		return
+	}
 }
